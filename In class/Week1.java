@@ -79,6 +79,8 @@ class Week1 {
     rangeSum(3, 4) => 13
 
     Assumption: the input array is static. */
+
+    
     public static void main(String[] args) {
         // temp t = new temp();
         // Problem 1:
