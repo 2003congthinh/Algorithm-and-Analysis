@@ -22,7 +22,7 @@ class Week1 {
                 b[i] = a;
             }
         }
-        return b[numbers.length];
+        return b[numbers.length - 1];
     }
 
     public static void main(String[] args) {
