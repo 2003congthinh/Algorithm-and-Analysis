@@ -67,6 +67,12 @@ class Week1 {
     2/ Seq1 = [1, 2, 3, 4], Seq2 = [1, 2, 3, 4] => YES
     3/ Seq1 = [1, 2, 3], Seq2 = [1, 2, 4] => NO */
 
+    public static boolean permutations(int[] seq1, int[] seq2){
+        boolean permutation = true;
+        /*for loop twice */
+        return permutation;
+    }
+
     // Problem 4:
     /*Describe an efficient algorithm to answer range queries, but we need the sum of a range this time. More specifically, given an array A[0..N-1], 
     implement an algorithm to return the sum of the sub-array A[L, R], L >= 0 and R <= N-1.
