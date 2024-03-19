@@ -1,0 +1,99 @@
+1. Array:
+Purpose: Arrays are fixed-size data structures that store elements of the same type in contiguous memory locations.
+Characteristics:
+	Indexed access: Elements can be accessed directly by their index.
+	Fixed size: The size of an array is fixed upon initialization and cannot be changed dynamically.
+Example:
+
+	int[] numbers = new int[5]; // Declaration and initialization of an integer array with size 5
+	numbers[0] = 10; // Assigning value 10 to the first element
+	int x = numbers[2]; // Accessing the third element and storing it in variable x
+
+2. List:
+Purpose: Lists are ordered collections that allow duplicates and provide dynamic resizing.
+Characteristics:
+	Dynamic size: Lists can grow or shrink dynamically as elements are added or removed.
+	Ordered: Elements are stored in the order they were inserted.
+	Allows duplicates: Lists can contain duplicate elements.
+Common Implementations:
+	ArrayList: ArrayList is a resizable array-based implementation of the List interface. It dynamically resizes itself when elements are 			   added or removed.
+		Code Example:
+
+			List<String> names = new ArrayList<>(); // Declaration and initialization of an ArrayList
+			names.add("Alice"); // Adding elements to the list
+			names.add("Bob");
+			String first = names.get(0); // Retrieving the first element
+
+	LinkedList: LinkedList is a doubly-linked list implementation of the List interface. It allows for efficient insertion and deletion 			    operations, but random access is slower compared to ArrayList.
+		Code Example:
+
+			List<Integer> numbers = new LinkedList<>(); // Declaration and initialization of a LinkedList
+			numbers.add(1); // Adding elements to the list
+			numbers.add(2);
+			int first = numbers.getFirst(); // Retrieving the first element
+
+
+3. Map:
+Purpose: Maps represent a collection of key-value pairs, where each key is associated with a value.
+Characteristics:
+	Key-value pairs: Elements are accessed and stored using keys.
+	No duplicate keys: Each key in a map must be unique.
+Common Implementations:
+	HashMap: Hash table-based implementation.
+	TreeMap: Red-black tree-based implementation.
+Example:
+
+	Map<String, Integer> ages = new HashMap<>(); // Declaration and initialization of a HashMap
+	ages.put("Alice", 30); // Adding key-value pairs to the map
+	ages.put("Bob", 25);
+	int aliceAge = ages.get("Alice"); // Retrieving the value associated with the key "Alice"
+
+4. Set:
+Purpose: Sets represent a collection of unique elements.
+Characteristics:
+	No duplicates: Sets cannot contain duplicate elements.
+	Unordered: Elements are not stored in any particular order.
+Common Implementations:
+	HashSet: Hash table-based implementation.
+	TreeSet: Red-black tree-based implementation.
+Example:
+
+	Set<String> uniqueNames = new HashSet<>(); // Declaration and initialization of a HashSet
+	uniqueNames.add("Alice"); // Adding elements to the set
+	uniqueNames.add("Bob");
+	boolean containsAlice = uniqueNames.contains("Alice"); // Checking if the set contains "Alice"
+
+5. Queue:
+Purpose: Queues represent a collection of elements in a specific order (FIFO - First-In-First-Out).
+Characteristics:
+	Ordered: Elements are processed in the order they were added (FIFO).
+	Operations: Common operations include adding elements to the end (enqueue) and removing elements from the front (dequeue).
+Common Implementations:
+	LinkedList: Doubly linked list-based implementation.
+		Code Example:
+			Queue<String> waitingQueue = new LinkedList<>(); // Declaration and initialization of a LinkedList-based queue
+			waitingQueue.add("Alice"); // Enqueueing elements to the queue
+			waitingQueue.add("Bob");
+			String nextInLine = waitingQueue.remove(); // Dequeueing the next element in line
+
+	PriorityQueue: PriorityQueue is an implementation of the Queue interface that provides elements in a prioritized order. Elements are 			       ordered according to their natural ordering or by a comparator provided at the time of construction.
+		Code Example:
+
+			Queue<Integer> priorityQueue = new PriorityQueue<>(); // Declaration and initialization of a PriorityQueue
+			priorityQueue.add(3); // Adding elements to the priority queue
+			priorityQueue.add(1);
+			int nextElement = priorityQueue.poll(); // Retrieving and removing the next element according to priority
+
+6. Stack:
+Purpose: A stack is a collection of elements that follows the Last-In-First-Out (LIFO) principle.
+Characteristics:
+	LIFO: Elements are added and removed from the top of the stack.
+Operations: Common operations include push (adding an element to the top of the stack) and pop (removing the top element from the stack).
+Common Implementations:
+	Stack class: Provided by  and implements the stack data structure.
+Example:
+
+	Stack<Integer> stack = new Stack<>(); // Declaration and initialization of a stack
+	stack.push(1); // Pushing elements onto the stack
+	stack.push(2);
+	int topElement = stack.pop(); // Popping the top element from the stack
