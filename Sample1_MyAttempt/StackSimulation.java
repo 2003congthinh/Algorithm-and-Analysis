@@ -15,15 +15,25 @@ public class StackSimulation {
         return returnPop;
     }
 
+    // public int minOperations(String[] targetStack, String[] currentStack){
+
+    // }
+
     public static void main(String[] args) {
         String[] letter = { "A", "B", "C", "D" };
-        StackSimulation stack = new StackSimulation(letter);
+        String[] empty = {};
+        StackSimulation stack1 = new StackSimulation(letter);
+        StackSimulation stack2 = new StackSimulation(empty);
 
         // Call popAll method to get the reversed array
-        String[] reversedArray = stack.popAll(letter);
+        String[] reversedArray = stack1.popAll(letter);
+        String[] emptyArray = stack2.popAll(empty);
 
         // Print each element of the reversed array
         for (String str : reversedArray) {
+            System.out.print(str + "");
+        }
+        for (String str : emptyArray) {
             System.out.print(str + "");
         }
     }
