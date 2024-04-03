@@ -1,73 +1,68 @@
-import java.util.Stack;
+package Sample1;
 
 public class StackSimulation {
-    private String[] stackArray;
-
-    public StackSimulation(String[] stack) {
-        this.stackArray = stack;
+  // popAll complexity = O(N)
+  String[] popAll(String[] stack) {
+    if (stack.length == 0) {
+      return new String[0];
     }
-
-    // popAll complexity = O(N)
-    public String[] popAll(String[] stack) {
-        Stack<String> tempStack = new Stack<>();
-        for (String item : stack) {
-            tempStack.push(item);
-        }
-
-        String[] result = new String[tempStack.size()];
-        int index = 0;
-        while (!tempStack.isEmpty()) {
-            result[index++] = tempStack.pop();
-        }
-
-        return result;
+    int N = stack.length;
+    String[] result = new String[N];
+    for (int i = 0; i < N; i++) {
+      result[i] = stack[N - i - 1];
     }
+    return result;
+  }
 
-    // minOperations complexity = O(N)
-    public int minOperations(String[] targetStack, String[] currentStack) {
-        Stack<String> target = arrayToStack(targetStack);
-        Stack<String> current = arrayToStack(currentStack);
+  // Starting from left to right, we need to determine the common
+  // elements in the two stacks
+  // (it's possible that there is no common element)
 
-        int operations = 0;
-        while (!target.isEmpty()) {
-            if (current.isEmpty() || !target.peek().equals(current.peek())) {
-                current.push(target.pop());
-                operations++;
-            } else {
-                target.pop();
-                current.pop();
-            }
-        }
+  // Let's call the remaining target elements T1, T2, ... TN
+  // let's call the remaining current elements C1, C2, ... CM
+  // because T1 != C1 (otherwise; they are in the set of common elements)
+  // we need to make the position currently contain C1 to contain T1
+  // so, we need to remove all C1, C2, ..., CM by calling
+  // pop() M times, then calling push("T1").
 
-        return operations;
+  // Now, in the current element list, there is no element after T1
+  // So, we need one more call push("T2") to match the
+  // next remaining element in target, and so on until we match TN.
+
+  // That is another N calls of push()
+  // So, the total calls needed is M + N
+
+  // minOperations complexity = O(M + N) = O(N)
+  public int minOperations(String[] targetStack, String[] currentStack) {
+    int start = 0;
+    while (start < targetStack.length && start < currentStack.length) {
+      if (targetStack[start].equals(currentStack[start])) {
+        start++;
+      } else {
+        break;
+      }
     }
+    // "start" is the first index where (targetStack[start] != currentStack[start])
+    // so, the remaining elements of both array start from "start"
+    return (targetStack.length - start) + (currentStack.length - start);
+  }
 
-    // Private method to convert String array to Stack
-    private Stack<String> arrayToStack(String[] array) {
-        Stack<String> stack = new Stack<>();
-        for (String item : array) {
-            stack.push(item);
-        }
-        return stack;
+  // client code
+  public static void main(String[] args) {
+    StackSimulation stack = new StackSimulation();
+    String[] result = stack.popAll(new String[] {"A", "B", "C"});
+    System.out.println("popAll (A, B, C)");
+    for (String r : result) {
+      System.out.println(r);
     }
-
-    public static void main(String[] args) {
-        // Sample usage
-        String[] targetStack = {"A", "B", "C"};
-        String[] currentStack = {"A", "B", "D"};
-        
-        StackSimulation stackSim = new StackSimulation(targetStack);
-        
-        // Testing popAll method
-        String[] poppedOrder = stackSim.popAll(currentStack);
-        System.out.print("Popped Order: ");
-        for (String s : poppedOrder) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
-        
-        // Testing minOperations method
-        int minOps = stackSim.minOperations(targetStack, currentStack);
-        System.out.println("Minimum Operations: " + minOps);
-    }
+    System.out.println("Test minOperations");
+    System.out.println(stack.minOperations(new String[] {}, new String[] {}));  // 0
+    System.out.println(stack.minOperations(new String[] {"A"}, new String[] {}));  // 1
+    System.out.println(stack.minOperations(new String[] {}, new String[] {"A"}));  // 1
+    System.out.println(stack.minOperations(new String[] {"A", "B"}, new String[] {"A"}));  // 1
+    System.out.println(stack.minOperations(new String[] {"A", "B"}, new String[] {"B", "A"}));  // 4
+    System.out.println(stack.minOperations(new String[] {"A", "B", "C"}, new String[] {"A", "B"}));  // 1
+    System.out.println(stack.minOperations(new String[] {"A", "B", "C"}, new String[] {"A", "B", "C", "D"}));  // 1
+    System.out.println(stack.minOperations(new String[] {"A", "B", "C"}, new String[] {"A", "C", "B", "D"}));  // 5
+  }
 }
